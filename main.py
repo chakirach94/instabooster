@@ -27,7 +27,7 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/get/profil/{item_id}")
-def searsh(item_id: str, q: Union[str, None] = None):
-  myjson=srachuser(item_id)    
-  return {"results":{myjson} }
+@app.get("/finduser/{item_id}")
+async def finduser(item_id: str, q: Union[str, None] = None):
+    link=srachuser(item_id)
+    return link
