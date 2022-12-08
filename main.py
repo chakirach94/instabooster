@@ -8,21 +8,17 @@ import random
 
 app = FastAPI()
 
-def channelsearch(channel):
-  url = "https://youtube-media-downloader.p.rapidapi.com/v2/search/channels"
-
-  querystring = {"keyword":channel,"sortBy":"relevance"}
-
+def srachuser(myuser):
+  url = "https://instagram-scraper-2022.p.rapidapi.com/ig/info_username/"
+  querystring = {"user":myuser}
   headers = {
     "X-RapidAPI-Key": "68a49ac1a2msh3a7b4896a584357p137023jsn9db99d40833e",
-    "X-RapidAPI-Host": "youtube-media-downloader.p.rapidapi.com"
+    "X-RapidAPI-Host": "instagram-scraper-2022.p.rapidapi.com"
   }
 
   response = requests.request("GET", url, headers=headers, params=querystring)
   jess_dict2 = json.loads(response.text)
-  if jess_dict2['status']==True:
-      return jess_dict2
-  return "false"
+  return jess_dict2
 
 
 
@@ -33,5 +29,5 @@ def read_root():
 
 @app.get("/get/profil/{item_id}")
 def searsh(item_id: str, q: Union[str, None] = None):
-        
-        return {"results":{item_id} }
+  myjson=srachuser(item_id)    
+        return {"results":{myjson} }
